@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjwyetv2aldnw"]
+
+[ext_resource type="Script" path="res://Debug/TestMenu.gd" id="1_55hk7"]
+
+[node name="TestMenu" type="VBoxContainer"]
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -114.0
+offset_right = 250.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55hk7")
+
+[node name="Address" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "IP Address; Non functioning"
+
+[node name="Port" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Port; Non functioning"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Name; Non functioning"
+
+[node name="Start Server" type="Button" parent="."]
+layout_mode = 2
+text = "Start Server"
+
+[node name="Join Server" type="Button" parent="."]
+layout_mode = 2
+text = "Join Server"
+
+[connection signal="pressed" from="Start Server" to="." method="_on_start_server_pressed"]
+[connection signal="pressed" from="Join Server" to="." method="_on_join_server_pressed"]

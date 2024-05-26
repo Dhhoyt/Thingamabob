@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkmwlfshtyj4h"]
+
+[ext_resource type="Script" path="res://Debug/SceneManager.gd" id="1_funkb"]
+[ext_resource type="PackedScene" uid="uid://cjwyetv2aldnw" path="res://Debug/TestMenu.tscn" id="1_q4cqa"]
+[ext_resource type="PackedScene" uid="uid://chuk4f3l745cb" path="res://Debug/TestLobby.tscn" id="2_1gacb"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_funkb")
+lobby = ExtResource("2_1gacb")
+
+[node name="TestMenu" parent="." instance=ExtResource("1_q4cqa")]

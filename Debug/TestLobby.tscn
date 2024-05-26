@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://chuk4f3l745cb"]
+
+[ext_resource type="Script" path="res://Debug/TestLobby.gd" id="1_alpuc"]
+[ext_resource type="PackedScene" uid="uid://b2honlwjdjcpd" path="res://Player.tscn" id="2_xim1p"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_imkuv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t7cvj"]
+size = Vector2(25, 25)
+
+[node name="TestLobby" type="Node3D"]
+script = ExtResource("1_alpuc")
+player = ExtResource("2_xim1p")
+
+[node name="Players" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.1315, 0)
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("WorldBoundaryShape3D_imkuv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("PlaneMesh_t7cvj")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player.tscn")
+spawn_path = NodePath("../Players")

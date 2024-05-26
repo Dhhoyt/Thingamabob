@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2honlwjdjcpd"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_j7wgq"]
+[ext_resource type="Script" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="1_v2b0h"]
+[ext_resource type="Script" path="res://PCInput.gd" id="2_7fibo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ycg44"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfmx8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1pa4l"]
+height = 1.25
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_orncy"]
+ground_bottom_color = Color(0.33, 0.33, 0.33, 1)
+
+[sub_resource type="Sky" id="Sky_mk4p1"]
+sky_material = SubResource("ProceduralSkyMaterial_orncy")
+
+[sub_resource type="Environment" id="Environment_7uea3"]
+background_mode = 2
+sky = SubResource("Sky_mk4p1")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tnp1b"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_j7wgq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_ycg44")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_7fibo")
+
+[node name="Head" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tfmx8")
+
+[node name="LowerBody" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
+shape = SubResource("CapsuleShape3D_1pa4l")
+
+[node name="Camera" type="Camera3D" parent="."]
+environment = SubResource("Environment_7uea3")
+
+[node name="UncrouchCheck" type="Area3D" parent="."]
+
+[node name="UncrouchCheckShape" type="CollisionShape3D" parent="UncrouchCheck"]
+shape = SubResource("CapsuleShape3D_tnp1b")
+
+[node name="RollbackSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("1_v2b0h")
+root = NodePath("..")
+state_properties = Array[String]([":global_transform", "Camera:global_transform"])
+input_properties = Array[String](["Input:input_dir", "Input:looking_angle", "Input:jumped"])
