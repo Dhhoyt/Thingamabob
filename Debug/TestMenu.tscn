@@ -20,17 +20,22 @@ script = ExtResource("1_55hk7")
 [node name="Address" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-placeholder_text = "IP Address; Non functioning"
+placeholder_text = "IP Address"
 
 [node name="Port" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 placeholder_text = "Port; Non functioning"
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Name" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 placeholder_text = "Name; Non functioning"
+
+[node name="TickRate" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Tick Rate"
 
 [node name="Start Server" type="Button" parent="."]
 layout_mode = 2

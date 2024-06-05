@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2honlwjdjcpd"]
+[gd_scene load_steps=14 format=3 uid="uid://b2honlwjdjcpd"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_j7wgq"]
 [ext_resource type="Script" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="1_v2b0h"]
 [ext_resource type="Script" path="res://PCInput.gd" id="2_7fibo"]
+[ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="4_d3os3"]
+[ext_resource type="Script" path="res://Audio Manager.gd" id="5_yk5wv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ycg44"]
 
@@ -25,11 +27,13 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tnp1b"]
 
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_8w8b4"]
+mix_rate = 48000.0
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j7wgq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("CapsuleMesh_ycg44")
 
 [node name="Input" type="Node" parent="."]
@@ -55,3 +59,18 @@ script = ExtResource("1_v2b0h")
 root = NodePath("..")
 state_properties = Array[String]([":global_transform", "Camera:global_transform"])
 input_properties = Array[String](["Input:input_dir", "Input:looking_angle", "Input:jumped"])
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("4_d3os3")
+root = NodePath("..")
+properties = Array[String]([":global_transform", "Camera:global_transform"])
+
+[node name="Audio Manager" type="Node" parent="." node_paths=PackedStringArray("output")]
+script = ExtResource("5_yk5wv")
+output = NodePath("../Output")
+
+[node name="Input" type="AudioStreamPlayer" parent="Audio Manager"]
+bus = &"Record"
+
+[node name="Output" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamGenerator_8w8b4")

@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var walking_speed: float = 5
 @export var crouching_speed: float = 2.5
 @export var sprint_speed: float = 10.0
-@export var deceleration: float = 10
+@export var deceleration: float = 20
 @export var jump_velocity: float = 5.0
 @export var sensitivity: float = 0.01
 @export var stamina_recovery_rate: float = 1
@@ -28,12 +28,11 @@ var gravity_vector: Vector3 = ProjectSettings.get_setting("physics/3d/default_gr
 @onready var uncrouch_check: Area3D = $UncrouchCheck
 @onready var input: PCInput = $Input
 @onready var rollback_synchronizer: RollbackSynchronizer = $RollbackSynchronizer
+@onready var audio_manager = $"Audio Manager"
 
 var peer_id = 0
 
 func is_local_authority():
-	print(input.get_multiplayer_authority())
-	print(multiplayer.get_unique_id())
 	return input.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func _ready():
@@ -42,8 +41,12 @@ func _ready():
 	peer_id = str(name).to_int()
 	set_multiplayer_authority(1)
 	input.set_multiplayer_authority(peer_id)
-	print("Player ID: " + str(peer_id) + " Coming from: " + str(multiplayer.get_unique_id()))
 	rollback_synchronizer.process_settings()
+	
+	if is_local_authority():
+		camera.current = true
+	audio_manager.setup_audio()
+	
 
 func _rollback_tick(delta, tick, is_fresh):
 	up_direction =- gravity_vector

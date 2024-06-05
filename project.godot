@@ -15,6 +15,11 @@ run/main_scene="res://Debug/SceneManager.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/enable_input=true
+driver/mix_rate=48000
+
 [autoload]
 
 NetworkTime="*res://addons/netfox/network-time.gd"
