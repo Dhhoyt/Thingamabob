@@ -11,6 +11,7 @@ func _on_start_server_pressed():
 
 func _on_join_server_pressed():
 	set_tick_rate()
+	print("Address 1 " + $Address.text)
 	get_parent().join_server($Address.text)
 
 func set_tick_rate():

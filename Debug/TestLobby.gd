@@ -7,11 +7,12 @@ signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
 
-const PORT = 7000
+const PORT = 25522
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
 func join_game(address = ""):
+	print("The address is" + address)
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
 	var peer = ENetMultiplayerPeer.new()
@@ -26,8 +27,10 @@ func create_game():
 	var error = peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
 		return error
+	print("Running on port" + str(PORT))
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_player_connected)
+	multiplayer.peer_disconnected.connect(destroy_player)
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.

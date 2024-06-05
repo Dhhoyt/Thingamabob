@@ -12,4 +12,4 @@ func join_server(address: String):
 	get_children()[0].queue_free()
 	var l = lobby.instantiate()
 	add_child(l)
-	l.join_game()
+	l.join_game(address)
