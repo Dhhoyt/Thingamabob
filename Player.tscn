@@ -47,6 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.375, 0)
 shape = SubResource("CapsuleShape3D_1pa4l")
 
 [node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474416, 0)
 environment = SubResource("Environment_7uea3")
 
 [node name="UncrouchCheck" type="Area3D" parent="."]
