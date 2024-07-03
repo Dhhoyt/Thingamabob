@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjwyetv2aldnw"]
+[gd_scene load_steps=2 format=3 uid="uid://b6y0mrlbcnnfw"]
 
-[ext_resource type="Script" path="res://Debug/TestMenu.gd" id="1_55hk7"]
+[sub_resource type="GDScript" id="GDScript_eddhp"]
+script/source = "extends VBoxContainer
+
+@onready var port_box: TextEdit = $Port
+@onready var address_box: TextEdit = $Address
+@onready var name_box: TextEdit = $Name
+@onready var tick_rate_box: TextEdit = $TickRate
+
+func _on_start_server_pressed():
+	set_tick_rate()
+	get_parent().start_server()
+
+func _on_join_server_pressed():
+	set_tick_rate()
+	print(\"Address 1 \" + $Address.text)
+	get_parent().join_server($Address.text)
+
+func set_tick_rate():
+	var new_rate = tick_rate_box.text.to_int()
+	ProjectSettings.set_setting(\"physics/common/physics_ticks_per_second\", new_rate)
+"
 
 [node name="TestMenu" type="VBoxContainer"]
 layout_direction = 1
@@ -15,7 +35,7 @@ offset_right = 250.0
 offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_55hk7")
+script = SubResource("GDScript_eddhp")
 
 [node name="Address" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 50)

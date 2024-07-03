@@ -33,11 +33,12 @@ var gravity_vector: Vector3 = ProjectSettings.get_setting("physics/3d/default_gr
 var peer_id = 0
 
 func is_local_authority():
+
 	return input.get_multiplayer_authority() == multiplayer.get_unique_id()
+	
 
 func _ready():
 	await get_tree().process_frame
-	
 	peer_id = str(name).to_int()
 	set_multiplayer_authority(1)
 	input.set_multiplayer_authority(peer_id)

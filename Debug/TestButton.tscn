@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://mm4wu2oaa3ah"]
+
+[ext_resource type="Script" path="res://LuaScripting/lua_runner.gd" id="1_3gr0w"]
+
+[node name="TestButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3gr0w")
+lua_script = "function ready()
+	child = get_child(0)
+	connect(child, \"toggled\", on_pressed)
+end
+
+function on_pressed(a)
+	print(a)
+end"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+text = "Button :3:3:3:3:3:3"
+script = ExtResource("1_3gr0w")

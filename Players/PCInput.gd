@@ -7,6 +7,8 @@ var jumped: bool = false
 
 var sensitivity = 0.01
 
+var api: LuaAPI = LuaAPI.new()
+
 func _gather():
 	input_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_backward")
 	jumped = Input.is_action_just_pressed("player_jump")
