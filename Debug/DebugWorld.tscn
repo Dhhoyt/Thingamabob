@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt83ko0kgwfxt"]
+
+[ext_resource type="Texture2D" uid="uid://bu780pkp4yr8w" path="res://Debug/kenney_prototypeTextures/PNG/Dark/texture_01.png" id="1_rw8oc"]
+[ext_resource type="PackedScene" uid="uid://o4h8q704y8p3" path="res://PCPlayer/PCPlayer.tscn" id="2_xruu6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xruu6"]
+albedo_texture = ExtResource("1_rw8oc")
+uv1_scale = Vector3(20, 20, 20)
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ag0ai"]
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rw8oc"]
+
+[node name="DebugWorld" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_xruu6")
+mesh = SubResource("PlaneMesh_ag0ai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_rw8oc")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_xruu6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65456, 0)

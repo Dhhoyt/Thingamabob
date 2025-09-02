@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bptvtthb18exv"]
+
+[ext_resource type="Script" uid="uid://clnt4a26q1kq0" path="res://Primitives/cube_1.gd" id="1_rsy2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4jhr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpwkf"]
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["construct"]]
+script = ExtResource("1_rsy2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_s4jhr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_kpwkf")

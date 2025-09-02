@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7uabltrx52e7"]
+
+[ext_resource type="Texture2D" uid="uid://bu780pkp4yr8w" path="res://Debug/kenney_prototypeTextures/PNG/Dark/texture_01.png" id="1_33fkn"]
+[ext_resource type="Script" uid="uid://bt5kcpgfymx4r" path="res://Primitives/worldboundary_3.gd" id="1_hw1j8"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jh46a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hw1j8"]
+albedo_texture = ExtResource("1_33fkn")
+uv1_scale = Vector3(128, 128, 128)
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b1i7e"]
+size = Vector2(128, 128)
+
+[node name="WorldBoundary" type="StaticBody3D"]
+script = ExtResource("1_hw1j8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_jh46a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hw1j8")
+mesh = SubResource("PlaneMesh_b1i7e")

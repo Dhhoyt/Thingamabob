@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Thingamabob"
+run/main_scene="uid://dt83ko0kgwfxt"
+config/features=PackedStringArray("4.4", "Forward Plus")
+
+[autoload]
+
+InputManager="*res://Globals/input_manager.gd"
+Settings="*res://Globals/settings.gd"
+ConstructRegistry="*res://Globals/construct_registry.gd"
+ReconciliationManager="*res://Globals/reconciliation_manager.gd"
+NetworkManager="*res://Globals/network_manager.gd"
+SceneManager="*res://Globals/scene_manager.gd"
+
+[global_group]
+
+construct=""
+
+[physics]
+
+common/physics_ticks_per_second=240
